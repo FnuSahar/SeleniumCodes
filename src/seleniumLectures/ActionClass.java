@@ -30,6 +30,23 @@ package seleniumLectures;
 			Thread.sleep(3000);
 			driver.close();
 		}
+		public static void main(String[] args) throws InterruptedException {
+			System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
+			WebDriver driver = new ChromeDriver();
+			driver.get("https://www.amazon.com/");
+			driver.manage().window().maximize();
+			driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
+			driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+			WebElement SearchBar = driver.findElement(By.id("twotabsearchtextbox"));
+			Actions action = new Actions(driver);
+			action.moveToElement(SearchBar)
+			.keyDown(SearchBar,Keys.SHIFT)
+			.sendKeys(SearchBar," Selenium")
+			.keyDown(SearchBar, Keys.SHIFT)
+			.build().perform();
+			
+			Thread.sleep(3000);
+			driver.close();
 
 	}
 
